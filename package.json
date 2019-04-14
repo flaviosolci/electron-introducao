@@ -1,0 +1,14 @@
+{
+  "name": "electron-introducao",
+  "version": "0.0.1",
+  "description": "Projeto dummy para aprender Electron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Flavio Solci",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.1.4"
+  }
+}
