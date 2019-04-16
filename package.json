@@ -2,13 +2,18 @@
   "name": "electron-introducao",
   "version": "0.0.1",
   "description": "Projeto dummy para aprender Electron",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
   },
   "author": "Flavio Solci",
   "license": "ISC",
   "dependencies": {
-    "electron": "^4.1.4"
+    "electron": "^4.1.4",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
   }
 }

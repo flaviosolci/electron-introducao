@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Alura Timer</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="img/icon.png" width="30" height="30" alt="">
+        Alura Timer
+      </a>
+      <div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="link-sobre">Sobre</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container">
+    <div class="timer">
+      <div class="relogio">
+        <span class="tempo">00:00:00</span>
+      </div>
+      <div class='controles'>
+        <img class="botao-play" src="img/play-button.svg">
+      </div>
+      <div class="curso-container">
+        <span class="curso">logica-programação</span>
+      </div>
+    </div>
+  </section>
+
+  <script>require('./js/renderer')</script>
+</body>
+
+</html>
