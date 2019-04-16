@@ -65,3 +65,6 @@ typings/
 
 #sqlite
 data.db
+
+# ARquivos criados pelo app
+data/

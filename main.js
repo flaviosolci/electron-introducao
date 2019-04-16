@@ -1,5 +1,6 @@
 // Esse é o processo principal. Somente aqui é possivel criar novas janelas
 const { app, BrowserWindow, ipcMain } = require('electron')
+const data = require('./data')
 
 let sobreWindow
 let mainWindow
@@ -39,4 +40,9 @@ ipcMain.on('abrir-janela-sobre', () => {
 
 ipcMain.on('fechar-janela-sobre', () => {
   sobreWindow.close()
+})
+
+ipcMain.on('curso-parado', (event, nomeCurso, tempoEstudado) => {
+  console.log(`O curso ${nomeCurso} for estudado por ${tempoEstudado}`)
+  data.salvaDados(nomeCurso, tempoEstudado)
 })
