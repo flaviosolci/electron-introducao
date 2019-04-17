@@ -1,5 +1,6 @@
 {
   "name": "electron-introducao",
+  "productName": "Alura Timer",
   "version": "0.0.1",
   "description": "Projeto dummy para aprender Electron",
   "main": "main.js",

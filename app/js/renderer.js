@@ -46,9 +46,13 @@ botaoPlay.addEventListener('click', () => {
 
 ipcRenderer.on('curso-trocado', (event, cursoCarregado) => {
   console.log(`=== Curso Trocado --> ${JSON.stringify(cursoCarregado)}`)
-
+  timer.parar(curso.textContent)
+  play = false
   tempo.textContent = cursoCarregado.tempo
   curso.textContent = cursoCarregado.nomeCurso
+
+  imgs = imgs.reverse()
+  botaoPlay.src = imgs[0]
 })
 
 botaoAdicionar.addEventListener('click', () => {

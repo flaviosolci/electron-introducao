@@ -68,3 +68,6 @@ data.db
 
 # ARquivos criados pelo app
 data/
+
+#electron-pacakger
+*win32-x64/
