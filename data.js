@@ -1,4 +1,5 @@
 const jsonfile = require('jsonfile-promised')
+const jsonfileSync = require('jsonfile')
 const fs = require('fs')
 const moment = require('moment')
 
@@ -6,15 +7,16 @@ module.exports = {
   salvaDados (curso, tempoEstudado) {
     let arquivDoCurso = this._formataNomeArquivoDoCurso(curso)
     if (fs.existsSync(arquivDoCurso)) {
-      this.adicionarTempoAoCurso(arquivDoCurso, tempoEstudado)
+      this.adicionarTempoAoCurso(arquivDoCurso, tempoEstudado, curso)
     } else {
       this.criaArquivoDeCurso(arquivDoCurso, {})
-        .then(() => { this.adicionarTempoAoCurso(arquivDoCurso, tempoEstudado) })
+        .then(() => { this.adicionarTempoAoCurso(arquivDoCurso, tempoEstudado, curso) })
     }
   },
 
-  adicionarTempoAoCurso (arquivoDoCurso, tempoEstudado) {
+  adicionarTempoAoCurso (arquivoDoCurso, tempoEstudado, oNomeCurso) {
     let dados = {
+      nomeCurso: oNomeCurso,
       ultimoEstudo: moment().format('DD/MMM/YYYY HH:mm:ss'),
       tempo: tempoEstudado
     }
@@ -34,6 +36,20 @@ module.exports = {
     console.log(`=== Curso sendo carregado -> ${arquivoDoCurso}`)
 
     return jsonfile.readFile(arquivoDoCurso)
+  },
+
+  pegaNomeDosCursos () {
+    let arquivos = fs.readdirSync(`${__dirname}/data/`)
+    console.log(`==== Arquivos no diretorio (${__dirname}/data/): ${arquivos}`)
+    let cursos = []
+    if (arquivos != null) {
+      arquivos.forEach(arquivo => {
+        let dados = jsonfileSync.readFileSync(`${__dirname}/data/${arquivo}`)
+        cursos.push(dados)
+      })
+    }
+    console.log(`==== Cursos encontrados: ${cursos}`)
+    return cursos
   },
 
   _formataNomeDoCurso (curso) {

@@ -34,3 +34,10 @@ botaoPlay.addEventListener('click', () => {
   imgs = imgs.reverse()
   botaoPlay.src = imgs[0]
 })
+
+ipcRenderer.on('curso-trocado', (event, cursoCarregado) => {
+  console.log(`=== Curso Trocado --> ${JSON.stringify(cursoCarregado)}`)
+
+  tempo.textContent = cursoCarregado.tempo
+  curso.textContent = cursoCarregado.nomeCurso
+})

@@ -1,9 +1,11 @@
 // Esse é o processo principal. Somente aqui é possivel criar novas janelas
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron')
 const data = require('./data')
+const template = require('./template')
 
 let sobreWindow
 let mainWindow
+let tray
 
 app.on('ready', () => {
   console.log('==== Aplicação Iniciada ====')
@@ -11,7 +13,13 @@ app.on('ready', () => {
     width: 800,
     height: 600
   })
-  console.log(`Caminho Atual --> ${__dirname}`)
+
+  tray = new Tray(`${__dirname}/app/img/icon-tray.png`)
+  tray.setToolTip('Alura Timer')
+  const trayIconMenu = template.geraTrayMenu(mainWindow)
+  tray.setContextMenu(Menu.buildFromTemplate(trayIconMenu))
+
+  console.log(`==== Caminho Atual --> ${__dirname}`)
 
   mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 })
