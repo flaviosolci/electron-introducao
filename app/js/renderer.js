@@ -49,3 +49,8 @@ botaoAdicionar.addEventListener('click', () => {
   campoAdd.value = ''
   ipcRenderer.send('novo-curso', novoCurso)
 })
+
+ipcRenderer.on('atalho-iniciar-parar', () => {
+  let click = new MouseEvent('click')
+  botaoPlay.dispatchEvent(click)
+})

@@ -1,7 +1,10 @@
 // Esse é o processo principal. Somente aqui é possivel criar novas janelas
-const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron')
+const { app, BrowserWindow, ipcMain, Tray, Menu, globalShortcut } = require('electron')
 const data = require('./data')
 const template = require('./template')
+
+// set env
+process.env.DEV_ENV = true
 
 let sobreWindow
 let mainWindow
@@ -20,8 +23,15 @@ app.on('ready', () => {
   const trayMenu = Menu.buildFromTemplate(templateMenu)
   tray.setContextMenu(trayMenu)
 
-  console.log(`==== Caminho Atual --> ${__dirname}`)
+  const templateAppMenu = template.geraMenuPrincipal(app.getName, process.env.DEV_ENV)
+  const appMenu = Menu.buildFromTemplate(templateAppMenu)
+  Menu.setApplicationMenu(appMenu)
 
+  globalShortcut.register('CommandOrControl+Alt+S', () => {
+    mainWindow.send('atalho-iniciar-parar')
+  })
+
+  console.log(`==== Caminho Atual --> ${__dirname}`)
   mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 })
 
