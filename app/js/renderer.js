@@ -1,6 +1,7 @@
 // Esse é o processo de renderer. Não tem acesso as janelas
 // Para se comunicar com as janelas precisa utilizar o IPC
 // IPC = Inter Process Communication
+/* eslint no-new: "off" , no-undef:"off" */
 const { ipcRenderer } = require('electron')
 const timer = require('./timer')
 const data = require('../../data')
@@ -26,9 +27,17 @@ botaoPlay.addEventListener('click', () => {
   if (play) {
     timer.parar(curso.textContent)
     play = false
+    new Notification('Alura Timer', {
+      body: `O curso ${curso.textContent} foi parado!!`,
+      icon: 'img/stop-button.png'
+    })
   } else {
     timer.iniciar(tempo)
     play = true
+    new Notification('Alura Timer', {
+      body: `O curso ${curso.textContent} foi iniciado!!`,
+      icon: 'img/play-button.png'
+    })
   }
 
   imgs = imgs.reverse()
@@ -43,11 +52,13 @@ ipcRenderer.on('curso-trocado', (event, cursoCarregado) => {
 })
 
 botaoAdicionar.addEventListener('click', () => {
-  let novoCurso = campoAdd.value
-  curso.textContent = novoCurso
-  tempo.textContent = '00:00:00'
-  campoAdd.value = ''
-  ipcRenderer.send('novo-curso', novoCurso)
+  if (campoAdd.value !== '') {
+    let novoCurso = campoAdd.value
+    curso.textContent = novoCurso
+    tempo.textContent = '00:00:00'
+    campoAdd.value = ''
+    ipcRenderer.send('novo-curso', novoCurso)
+  }
 })
 
 ipcRenderer.on('atalho-iniciar-parar', () => {
