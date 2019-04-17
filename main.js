@@ -16,8 +16,9 @@ app.on('ready', () => {
 
   tray = new Tray(`${__dirname}/app/img/icon-tray.png`)
   tray.setToolTip('Alura Timer')
-  const trayIconMenu = template.geraTrayMenu(mainWindow)
-  tray.setContextMenu(Menu.buildFromTemplate(trayIconMenu))
+  const templateMenu = template.geraTrayMenu(mainWindow)
+  const trayMenu = Menu.buildFromTemplate(templateMenu)
+  tray.setContextMenu(trayMenu)
 
   console.log(`==== Caminho Atual --> ${__dirname}`)
 
@@ -53,4 +54,10 @@ ipcMain.on('fechar-janela-sobre', () => {
 ipcMain.on('curso-parado', (event, nomeCurso, tempoEstudado) => {
   console.log(`O curso ${nomeCurso} for estudado por ${tempoEstudado}`)
   data.salvaDados(nomeCurso, tempoEstudado)
+})
+
+ipcMain.on('novo-curso', (event, nomeCurso) => {
+  const templateMenu = template.adicionaCursoNoTray(nomeCurso, mainWindow)
+  const trayMenu = Menu.buildFromTemplate(templateMenu)
+  tray.setContextMenu(trayMenu)
 })

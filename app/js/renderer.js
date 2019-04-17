@@ -9,11 +9,11 @@ let linkSobre = document.querySelector('#link-sobre')
 let botaoPlay = document.querySelector('.botao-play')
 let tempo = document.querySelector('.tempo')
 let curso = document.querySelector('.curso')
+let botaoAdicionar = document.querySelector('.botao-adicionar')
+let campoAdd = document.querySelector('.campo-adicionar')
 
 window.onload = () => {
   data.carregaCurso(curso.textContent).then((dados) => { tempo.textContent = dados.tempo })
-
-  //  =
 }
 
 linkSobre.addEventListener('click', (event) => {
@@ -40,4 +40,12 @@ ipcRenderer.on('curso-trocado', (event, cursoCarregado) => {
 
   tempo.textContent = cursoCarregado.tempo
   curso.textContent = cursoCarregado.nomeCurso
+})
+
+botaoAdicionar.addEventListener('click', () => {
+  let novoCurso = campoAdd.value
+  curso.textContent = novoCurso
+  tempo.textContent = '00:00:00'
+  campoAdd.value = ''
+  ipcRenderer.send('novo-curso', novoCurso)
 })

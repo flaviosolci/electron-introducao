@@ -15,10 +15,7 @@ html, body {
     width: 100%;
     font-family: 'Roboto', sans-serif;
     /* background: url(../img/texture.png) top left repeat; */
-    background: -moz-linear-gradient(top, rgba(52,58,64,0.8) 0%, rgba(52,58,64,0.8) 1%, rgba(52,58,64,0.6) 100%);
-    background: -webkit-linear-gradient(top, rgba(52,58,64,0.8) 0%,rgba(52,58,64,0.8) 1%,rgba(52,58,64,0.6) 100%);
-    background: linear-gradient(to bottom, rgba(52,58,64,0.8) 0%,rgba(52,58,64,0.8) 1%,rgba(52,58,64,0.6) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc343a40', endColorstr='#99343a40',GradientType=0 );
+    background: linear-gradient(to bottom, rgba(52, 58, 64, 0.8) 0%, rgba(52, 58, 64, 0.8) 1%, rgba(52, 58, 64, 0.6) 100%);
 }
 
 .titulo {
@@ -98,4 +95,144 @@ html, body {
 
 .info-button {
     width: 25px;
+}
+
+/* index.css */
+
+/* restante do código omitido */
+
+.botao-adicionar {
+    width: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.group {
+    position: relative;
+    top: 27px;
+    margin: 0 auto;
+    width: 335px;
+    height: 50px;
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: inline-block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* LABEL ==================================== */
+
+label {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+
+input:focus~label, input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+/* BOTTOM BARS ============================== */
+
+.bar {
+    position: relative;
+    display: block;
+    width: 300px;
+}
+
+.bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+/* active state */
+
+input:focus~.bar:before, input:focus~.bar:after {
+    width: 50%;
+}
+
+/* HIGHLIGHTER =============================== */
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* active state */
+
+input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
 }
